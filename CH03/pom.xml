@@ -19,7 +19,7 @@
       <name>GitHub Packages</name>
 
       <!-- REPLACE WITH YOUR GITHUB_USERNAME and GITHUB_REPONAME -->
-      <url>https://maven.pkg.github.com/aksharat/CICD_challenges</url>
+      <url>https://maven.pkg.github.com/aksharat/CICD_challenges/CH03</url>
 
     </repository>
   </distributionManagement>
