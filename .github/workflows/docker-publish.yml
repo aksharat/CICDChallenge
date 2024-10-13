@@ -94,7 +94,7 @@ jobs:
         id: build-and-push
         run: |
           ls -la # Check current directory structure
-          docker buildx build --file CD04/Dockerfile --platform linux/amd64,linux/arm64 --push -t ghcr.io/aksharat/cicd_challenges:nightly CD04
+          docker buildx build --file CH04/Dockerfile --platform linux/amd64,linux/arm64 --push -t ghcr.io/aksharat/cicd_challenges:nightly CH04
 
 
 
