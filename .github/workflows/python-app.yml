@@ -27,16 +27,16 @@ jobs:
         cd CH01
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        cd ..
+        # cd ..
 
     - name: Lint with flake8 in CH01
       run: |
-        cd CH01
+        # cd CH01
         # Ensure the environment uses the correct version of flake8
         ~/.local/bin/flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         ~/.local/bin/flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         # Go back to the root directory
-        cd ..
+        # cd ..
 
     - name: Test with pytest in CH01
       run: |
