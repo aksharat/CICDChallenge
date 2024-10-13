@@ -93,7 +93,7 @@ jobs:
       - name: Build and push Docker image
         id: build-and-push
         run: |
-          docker buildx build --file CD04/Dockerfile --platform linux/amd64,linux/arm64 --push -t ghcr.io/aksharat/CICD_challenges:ghcr.io/aksharat/cicd_challenges:nightly CD04
+          docker buildx build --file CD04/Dockerfile --platform linux/amd64,linux/arm64 --push -t ghcr.io/aksharat/cicd_challenges:nightly CD04
 
 
       # Sign the resulting Docker image digest except on PRs.
