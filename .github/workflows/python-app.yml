@@ -21,24 +21,23 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-      working-directory: CH01  # Navigate to CH01 folder
 
     - name: Install dependencies for CH01
       run: |
+        cd CH01
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      working-directory: CH01  # Navigate to CH01 folder
 
     - name: Lint with flake8 in CH01
       run: |
+        cd CH01
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      working-directory: CH01  # Navigate to CH01 folder
 
     - name: Test with pytest in CH01
       run: |
+        cd CH01
         pytest
-      working-directory: CH01  # Navigate to CH01 folder
 
   build_CH02:
     runs-on: ubuntu-latest
@@ -51,21 +50,20 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-      working-directory: CH02  # Navigate to CH02 folder
 
     - name: Install dependencies for CH02
       run: |
+        cd CH02
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      working-directory: CH02  # Navigate to CH02 folder
 
     - name: Lint with flake8 in CH02
       run: |
+        cd CH02
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      working-directory: CH02  # Navigate to CH02 folder
 
     - name: Test with pytest in CH02
       run: |
+        cd CH02
         pytest
-      working-directory: CH02  # Navigate to CH02 folder
