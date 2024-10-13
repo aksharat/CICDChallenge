@@ -29,18 +29,22 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         # cd ..
 
-    - name: Lint with flake8 in CH01
+    - name: Lint with flake8
       run: |
-        # cd CH01
-        # Ensure the environment uses the correct version of flake8
-        ~/.local/bin/flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        ~/.local/bin/flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        # Go back to the root directory
-        # cd ..
-
-    - name: Test with pytest in CH01
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
       run: |
-        pytest
+        python -m pytest --verbose --junit-xml=junit.xml
+    - name: Publish Test Report
+      uses: mikepenz/action-junit-report@v3
+      if: success() || failure() # always run even if the previous step fails
+      with:
+        report_paths: '**/junit.xml'
+        detailed_summary: true
+        include_passed: true
 
   build_CH02:
     runs-on: ubuntu-latest
