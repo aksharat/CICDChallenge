@@ -1,0 +1,71 @@
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build_CH01:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      working-directory: CH01  # Navigate to CH01 folder
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies for CH01
+      working-directory: CH01  # Navigate to CH01 folder
+      run: |
+        python -m pip install --upgrade pip
+        # Install dependencies from CH01/requirements.txt
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Lint with flake8 in CH01
+      working-directory: CH01  # Navigate to CH01 folder
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Test with pytest in CH01
+      working-directory: CH01  # Navigate to CH01 folder
+      run: |
+        pytest
+
+  build_CH02:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      working-directory: CH02  # Navigate to CH02 folder
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies for CH02
+      working-directory: CH02  # Navigate to CH02 folder
+      run: |
+        python -m pip install --upgrade pip
+        # Install dependencies from CH02/requirements.txt
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Lint with flake8 in CH02
+      working-directory: CH02  # Navigate to CH02 folder
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Test with pytest in CH02
+      working-directory: CH02  # Navigate to CH02 folder
+      run: |
+        pytest
