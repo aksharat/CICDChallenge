@@ -28,7 +28,7 @@ jobs:
     - name: Build with Maven
       run: |
         cd CH03
-        mvn -B package --file pom.xml
+        mvn -B package --file CH03/pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
       run: |
