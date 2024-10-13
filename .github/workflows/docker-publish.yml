@@ -92,9 +92,15 @@ jobs:
       #     cache-to: type=gha,mode=max
       - name: Build and push Docker image
         id: build-and-push
-        run: |
-          ls -la # Check current directory structure
-          docker buildx build --file CH04/Dockerfile --platform linux/amd64,linux/arm64 --push -t ghcr.io/aksharat/cicd_challenges:nightly CH04
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        with:
+          context: CH04  # Set CH04 as the context
+          file: CH04/Dockerfile  # Specify the Dockerfile inside CH04
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
 
 
