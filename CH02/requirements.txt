@@ -1,2 +1,4 @@
 fastapi==0.92.0
 pandas==1.5.3
+pytest
+flake8
